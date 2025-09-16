@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>EasyToolbar Example</title>
+        <script src="easyToolbar.js"></script>
+    </head>
+
+    <body>
+        <script>
+            function openFileMenu() {
+                console.log("File :3")
+            }
+
+            function openEditMenu() {
+                console.log("Edit :3")
+            }
+
+            function openToolsMenu() {
+                console.log("Tools :3")
+            }
+
+            createToolbar(35, "#242424", "#242424", "#1a1a1a", "white", 5, {"File":{"Blah":"openEditMenu", "Blah2":"openFileMenu"}, "Edit":{"Blah":"openEditMenu", "Blah2":"openFileMenu"}, "File":{"Blah":"openEditMenu", "Tools":"openFileMenu"}});
+        </script>
+    </body>
+</html>
