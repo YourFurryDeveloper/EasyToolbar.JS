@@ -5,14 +5,15 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
 
     for (const btnItem in toolbarOptionBtns) {
         let toolbarBtn = document.createElement("button");
-        toolbarBtn.className = "toolbarBtn";
+        toolbarBtn.id = "toolbarBtn";
+        toolbarBtn.className = "toolbarMenuBtnPair_" + btnItem;
         toolbarBtn.style = `color: ${toolbarOptionBtnTxtColor}; height: 100%; border: none; padding-left: ${toolbarOptionBtnPadding}px; padding-right: ${toolbarOptionBtnPadding}px;`
         toolbarBtn.textContent = btnItem;
 
         let optionMenu = document.createElement("div");
-        optionMenu.id = "optionMenu_" + btnItem;
+        optionMenu.id = "toolbarMenuBtnPair_" + btnItem;
         optionMenu.className = "optionMenu";
-        optionMenu.style = `display: none; flex-direction: column; height: fit-content; background-color: ${toolbarBg}; position: fixed; top: ${toolbarHeight}px; left: 0;`;
+        optionMenu.style = `display: none; flex-direction: column; height: fit-content; background-color: ${toolbarBg}; position: fixed; top: ${toolbarHeight}px;`;
 
         for (option in toolbarOptionBtns[btnItem]) {
             let toolbarOptionMenuBtn = document.createElement("button");
@@ -30,7 +31,7 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
                 menu.style.display = "none";
             }
 
-            for (optionMenuBtn of document.getElementsByClassName("toolbarBtn")) {
+            for (optionMenuBtn of document.querySelectorAll("#toolbarBtn")) {
                 optionMenuBtn.classList.remove("activeBtn");
             }
 
@@ -46,7 +47,7 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
                     menu.style.display = "none";
                 }
 
-                for (optionMenuBtn of document.getElementsByClassName("toolbarBtn")) {
+                for (optionMenuBtn of document.querySelectorAll("#toolbarBtn")) {
                     optionMenuBtn.classList.remove("activeBtn");
                 }
             }
@@ -58,13 +59,18 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
 
     document.body.appendChild(toolbar);
 
+    for (toolbarMenuBtn of document.querySelectorAll("#toolbarBtn")) {
+        console.log(toolbarMenuBtn.className);
+        document.getElementById(toolbarMenuBtn.className).style.left = toolbarMenuBtn.getBoundingClientRect().left;
+    }
+
     const style = document.createElement("style");
     style.innerHTML = `
-    .toolbarBtn, .toolbarMenuBtn {
+    #toolbarBtn, .toolbarMenuBtn {
         background-color: ${toolbarBg};
     }
 
-    .toolbarBtn:hover, .toolbarMenuBtn:hover {
+    #toolbarBtn:hover, .toolbarMenuBtn:hover {
         background-color: ${toolbarOptionBtnHoverBg};
     }
 
