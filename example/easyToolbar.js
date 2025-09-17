@@ -1,4 +1,4 @@
-function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolbarOptionBtnActiveBg, toolbarOptionBtnTxtColor, toolbarOptionBtnPadding, toolbarOptionBtns) {
+function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolbarOptionBtnActiveBg, toolbarOptionBtnTxtColor, toolbarOptionBtnActiveTxtColor, toolbarOptionBtnPadding, toolbarOptionBtns) {
     let toolbar = document.createElement("div");
     toolbar.id = "toolbar";
     toolbar.style = `position: fixed; top: 0; left: 0; right: 0; height: ${toolbarHeight}px; background-color: ${toolbarBg};`;
@@ -13,13 +13,13 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
         let optionMenu = document.createElement("div");
         optionMenu.id = "toolbarMenuBtnPair_" + btnItem;
         optionMenu.className = "optionMenu";
-        optionMenu.style = `display: none; flex-direction: column; height: fit-content; background-color: ${toolbarBg}; position: fixed; top: ${toolbarHeight}px;`;
+        optionMenu.style = `display: none; flex-direction: column; height: fit-content; position: fixed; top: ${toolbarHeight}px;`;
 
         for (option in toolbarOptionBtns[btnItem]) {
             let toolbarOptionMenuBtn = document.createElement("button");
             toolbarOptionMenuBtn.id = "toolbarMenuBtn" + option;
             toolbarOptionMenuBtn.className = "toolbarMenuBtn";
-            toolbarOptionMenuBtn.style = `color: ${toolbarOptionBtnTxtColor}; width: 100%; border: none; padding-left: ${toolbarOptionBtnPadding}px; padding-right: ${toolbarOptionBtnPadding}px; padding-top: 5px; padding-bottom: 5px;`
+            toolbarOptionMenuBtn.style = `color: ${toolbarOptionBtnActiveTxtColor}; width: 100%; border: none; padding-left: ${toolbarOptionBtnPadding}px; padding-right: ${toolbarOptionBtnPadding}px; padding-top: 5px; padding-bottom: 5px; text-align: left;`
             toolbarOptionMenuBtn.textContent = option;
             toolbarOptionMenuBtn.setAttribute("onclick", `${toolbarOptionBtns[btnItem][option]}()`);
 
@@ -60,14 +60,18 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
     document.body.appendChild(toolbar);
 
     for (toolbarMenuBtn of document.querySelectorAll("#toolbarBtn")) {
-        console.log(toolbarMenuBtn.className);
-        document.getElementById(toolbarMenuBtn.className).style.left = toolbarMenuBtn.getBoundingClientRect().left;
+        document.getElementById(toolbarMenuBtn.className).style.left = toolbarMenuBtn.getBoundingClientRect().left + "px";
     }
 
     const style = document.createElement("style");
+    style.id = "EasyToolbarJS_Style";
     style.innerHTML = `
-    #toolbarBtn, .toolbarMenuBtn {
+    #toolbarBtn {
         background-color: ${toolbarBg};
+    }
+
+    .toolbarMenuBtn {
+        background-color: ${toolbarOptionBtnActiveBg};
     }
 
     #toolbarBtn:hover, .toolbarMenuBtn:hover {
@@ -76,6 +80,7 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
 
     .activeBtn {
         background-color: ${toolbarOptionBtnActiveBg} !important;
+        color: ${toolbarOptionBtnActiveTxtColor} !important;
     }
     `;
     document.head.appendChild(style);
