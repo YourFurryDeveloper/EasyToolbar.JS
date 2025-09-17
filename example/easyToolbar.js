@@ -40,7 +40,7 @@ function createToolbar(toolbarHeight, toolbarBg, toolbarOptionBtnHoverBg, toolba
         });
 
         document.addEventListener("click", function(event) {
-            if (!document.body.contains(document.getElementById("toolbar"))) {
+            if (!document.getElementById("toolbar").contains(event.target)) {
                 console.log(":3");
                 for (menu of document.getElementsByClassName("optionMenu")) {
                     menu.style.display = "none";
