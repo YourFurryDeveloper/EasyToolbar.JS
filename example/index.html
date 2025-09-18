@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>EasyToolbar Example</title>
-        <script src="https://raw.githubusercontent.com/YourFurryDeveloper/EasyToolbar.JS/refs/heads/main/easyToolbar.js"></script>
+        <script src="easyToolbar.js"></script>
     </head>
 
     <style>
@@ -26,8 +26,8 @@
                 console.log("Tools :3")
             }
 
-            // Toolbar height, Toolbar BG color, Option/menu button hover BG color, Option/menu button active BG color, Option/menu button text color, Option/menu button text color when active, Option/menu button horizontal text padding, & The acutal menus and buttons
-            createToolbar(35, "#242424", "#5c5c5c", "#2a3638", "white", "white", 7, {"File":{"Open":"openEditMenu", "Save":"openFileMenu"}, "Edit":{"Copy":"openEditMenu", "Paste":"openFileMenu"}, "Tools":{"Delete CoAI":"deleteMsAI", "Pen":"ShowPenTool"}});
+            // Toolbar height, Toolbar BG color, Option/menu button hover BG color, Option/menu button active BG color, Option/menu button text color, Option/menu button text color when active, Option/menu button horizontal text padding, What cursor to show on button hover, & The acutal menus and buttons
+            createToolbar(35, "#242424", "#5c5c5c", "#2a3638", "white", "white", 7, "pointer", {"File":{"Open":"openEditMenu", "Save":"openFileMenu"}, "Edit":{"Copy":"openEditMenu", "Paste":"openFileMenu"}, "Tools":{"Delete CoAI":"deleteMsAI", "Pen":"ShowPenTool"}});
         </script>
     </body>
 </html>
